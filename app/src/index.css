@@ -22,6 +22,6 @@ form {
 }
 
 form input:last-child {
-  width: 10%;
+  width: 130px;
   margin: 0 auto;
 }
