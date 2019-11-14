@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Field, withFormik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import NewUser from './User'
 
-function newForm() {
+
+function newForm(props) {
+
   return (
     <div>
       <Form>
@@ -28,6 +31,7 @@ function newForm() {
           </label>
           <input type='submit'></input>
       </Form>
+      <NewUser users={props.users} setUsers={props.setUsers} />
     </div>
   );
 }
@@ -58,6 +62,8 @@ const newFormWithFormik = withFormik ({
 
         .then(response => {
             tools.resetForm()
+            tools.props.setUsers([...tools.props.users, response.data])
+            console.log(tools.props.users);
             })
             .catch(error => {
                 console.log(error);
